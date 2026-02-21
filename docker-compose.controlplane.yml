@@ -1,0 +1,32 @@
+services:
+  controlplane-api:
+    build:
+      context: .
+      dockerfile: apps/controlplane-api/Dockerfile
+    ports:
+      - "8199:8199"
+    environment:
+      CONTROLPLANE_WORKSPACE_ROOT: /Users/matt/code
+      CLOWNPEANUTS_API_BASE: http://host.docker.internal:8099
+      CLOWNPEANUTS_WS_EVENTS_URL: ws://host.docker.internal:8099/ws/events
+      CLOWNPEANUTS_WS_THEATER_URL: ws://host.docker.internal:8099/ws/theater/live
+      PINGTING_REPO_PATH: /Users/matt/code/pingting
+      PINGTING_STATUS_PATH: /Users/matt/code/pingting/data/status.json
+      PINGTING_CONFIG_PATH: /Users/matt/code/pingting/config/pingting.yaml
+    volumes:
+      - /Users/matt/code:/Users/matt/code
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    restart: unless-stopped
+
+  controlplane-dashboard:
+    build:
+      context: ./apps/controlplane-dashboard
+    ports:
+      - "4317:4317"
+    environment:
+      NEXT_PUBLIC_CONTROLPANE_API: http://127.0.0.1:8199
+      NEXT_PUBLIC_CONTROLPANE_WS: ws://127.0.0.1:8199
+    depends_on:
+      - controlplane-api
+    restart: unless-stopped

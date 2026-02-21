@@ -1,0 +1,59 @@
+name: Control-Plane Smoke
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  controlplane:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout orchestration repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install control-plane API dependencies
+        run: pip install -r ./apps/controlplane-api/requirements.txt
+
+      - name: Run control-plane API self-check
+        run: |
+          python - <<'PY'
+          import sys
+          from pathlib import Path
+
+          sys.path.insert(0, str(Path("apps/controlplane-api").resolve()))
+          from main import app
+          from fastapi.testclient import TestClient
+
+          client = TestClient(app)
+          for path in ("/health", "/overview/summary", "/sentry/summary", "/orchestration/summary"):
+              response = client.get(path)
+              if response.status_code != 200:
+                  raise SystemExit(f"{path} failed with status {response.status_code}")
+          PY
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: ./apps/controlplane-dashboard/package-lock.json
+
+      - name: Build control-plane dashboard
+        working-directory: ./apps/controlplane-dashboard
+        run: |
+          npm ci
+          npm run build
+
+      - name: Check control-plane scripts syntax
+        run: |
+          bash -n ./scripts/controlplane/start_api.sh ./scripts/controlplane/start_dashboard.sh ./scripts/controlplane/start_dev.sh ./scripts/controlplane/install_launch_agent.sh ./scripts/controlplane/uninstall_launch_agent.sh
+          bash -n ./harness/controlplane-smoke.sh
