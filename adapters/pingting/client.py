@@ -11,7 +11,7 @@ from typing import Any
 
 
 @dataclass(frozen=True)
-class PingtingStatusSnapshot:
+class PingTingStatusSnapshot:
     payload: dict[str, Any]
     source: str
     age_seconds: float | None
@@ -50,8 +50,8 @@ def _safe_json_loads(raw: Any, default: Any) -> Any:
         return default
 
 
-class PingtingAdapter:
-    """Loads Pingting status from status.json or CLI fallback."""
+class PingTingAdapter:
+    """Loads PingTing status from status.json or CLI fallback."""
 
     def __init__(
         self,
@@ -84,7 +84,7 @@ class PingtingAdapter:
 
         return "python3"
 
-    def _read_status_file(self) -> PingtingStatusSnapshot | None:
+    def _read_status_file(self) -> PingTingStatusSnapshot | None:
         if not self.status_path.is_file():
             return None
 
@@ -100,9 +100,9 @@ class PingtingAdapter:
         except OSError:
             age_seconds = None
 
-        return PingtingStatusSnapshot(payload=payload, source="file", age_seconds=age_seconds)
+        return PingTingStatusSnapshot(payload=payload, source="file", age_seconds=age_seconds)
 
-    def _run_status_cli(self) -> PingtingStatusSnapshot:
+    def _run_status_cli(self) -> PingTingStatusSnapshot:
         cmd = [
             self._resolve_python_bin(),
             "-m",
@@ -129,7 +129,7 @@ class PingtingAdapter:
             raise RuntimeError(f"pingting status command failed: {detail}")
 
         payload = _extract_json_payload(completed.stdout)
-        return PingtingStatusSnapshot(payload=payload, source="cli", age_seconds=0.0)
+        return PingTingStatusSnapshot(payload=payload, source="cli", age_seconds=0.0)
 
     def _highlights(self, payload: dict[str, Any]) -> dict[str, Any]:
         findings_24h = payload.get("findings_24h")
@@ -374,7 +374,7 @@ class PingtingAdapter:
                 snapshot = self._run_status_cli()
             except Exception as exc:
                 errors.append(str(exc))
-                snapshot = PingtingStatusSnapshot(
+                snapshot = PingTingStatusSnapshot(
                     payload=snapshot.payload,
                     source="file_stale",
                     age_seconds=snapshot.age_seconds,

@@ -1,6 +1,6 @@
 # macOS User Guide
 
-This guide walks through setting up the SecretSquirrels orchestration workspace on macOS from scratch. By the end, you will have the orchestration repository and both managed runtime repositories (Pingting and ClownPeanuts) cloned locally, and the smoke test will pass to confirm everything is in order.
+This guide walks through setting up the SecretSquirrels orchestration workspace on macOS from scratch. By the end, you will have the orchestration repository and both managed runtime repositories (PingTing and ClownPeanuts) cloned locally, and the smoke test will pass to confirm everything is in order.
 
 ## 1. Prerequisites
 
@@ -82,7 +82,7 @@ Once SSH is working, bootstrap the runtime repositories:
 ./scripts/bootstrap_repos.sh
 ```
 
-The script will clone Pingting and ClownPeanuts in parallel into sibling directories alongside SecretSquirrels (e.g., `/Users/matt/code/pingting` and `/Users/matt/code/clownpeanuts`). If either repository already exists at the expected path, the script will fetch and fast-forward-merge instead of cloning.
+The script will clone PingTing and ClownPeanuts in parallel into sibling directories alongside SecretSquirrels (e.g., `/Users/matt/code/pingting` and `/Users/matt/code/clownpeanuts`). If either repository already exists at the expected path, the script will fetch and fast-forward-merge instead of cloning.
 
 ### Option B: HTTPS with a Personal Access Token
 
@@ -115,7 +115,7 @@ The smoke harness performs the following checks against each managed repository 
 
 1. Confirms that a `.git` directory exists at the expected path (e.g., `/Users/matt/code/pingting/.git`).
 2. Confirms that the verification key file exists on disk. The verification key is a file path declared in `config/projects.yaml` that serves as a lightweight indicator of a successful and complete checkout. The current verification keys are:
-   - `pingting/main.py` for Pingting
+   - `pingting/main.py` for PingTing
    - `clownpeanuts/cli.py` for ClownPeanuts
 3. Runs `git rev-parse --is-inside-work-tree` to confirm that Git considers the directory a valid repository.
 

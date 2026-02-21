@@ -31,7 +31,7 @@ Current implementation snapshot:
 As of 2026-02-21, the following are implemented and in active use from `secretsquirrels`:
 
 - Shared Next.js control-plane dashboard with Overview, Deception, Theater, Sentry, and Orchestration operator surfaces.
-- Shared FastAPI control-plane API with Pingting summary/findings/runs aggregation and orchestration action endpoints.
+- Shared FastAPI control-plane API with PingTing summary/findings/runs aggregation and orchestration action endpoints.
 - ClownPeanuts HTTP proxy + websocket relay integration (`/deception/*` and `/deception/ws/*`).
 - Orchestration actions persisted to local state (`data/controlplane/actions-state.json`) and rendered in UI.
 - Legacy theater route aliases retained in dashboard for compatibility while cutover hardens.

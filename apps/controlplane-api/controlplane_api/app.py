@@ -18,7 +18,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from adapters.clownpeanuts import ClownPeanutsAdapter
-from adapters.pingting import PingtingAdapter
+from adapters.pingting import PingTingAdapter
 from .config import ControlPlaneSettings, load_settings
 from .orchestration import build_orchestration_summary, run_action
 
@@ -92,7 +92,7 @@ def create_app(settings: ControlPlaneSettings | None = None) -> FastAPI:
         base_url=settings.clownpeanuts_api_base,
         api_token=settings.clownpeanuts_api_token,
     )
-    pingting = PingtingAdapter(
+    pingting = PingTingAdapter(
         repo_path=settings.pingting_repo_path,
         status_path=settings.pingting_status_path,
         config_path=settings.pingting_config_path,

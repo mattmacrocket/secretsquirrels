@@ -3,7 +3,7 @@
 ## Canonical Paths
 
 - `/Users/matt/code/secretsquirrels` - umbrella orchestration
-- `/Users/matt/code/pingting` - Pingting runtime
+- `/Users/matt/code/pingting` - PingTing runtime
 - `/Users/matt/code/clownpeanuts` - ClownPeanuts runtime
 - `/Users/matt/code/secretsquirrels/apps/controlplane-dashboard` - shared operator UI
 - `/Users/matt/code/secretsquirrels/apps/controlplane-api` - shared control-plane API

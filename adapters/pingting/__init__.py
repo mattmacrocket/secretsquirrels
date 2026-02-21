@@ -1,3 +1,3 @@
-from .client import PingtingAdapter
+from .client import PingTingAdapter
 
-__all__ = ["PingtingAdapter"]
+__all__ = ["PingTingAdapter"]

@@ -4,7 +4,7 @@ SecretSquirrels is the orchestration layer for a multi-repository agent workspac
 
 The two runtime repositories managed by this orchestration layer are:
 
-- **Pingting** — [github.com/mattmacrocket/pingting](https://github.com/mattmacrocket/pingting)
+- **PingTing** — [github.com/mattmacrocket/pingting](https://github.com/mattmacrocket/pingting)
 - **ClownPeanuts** — [github.com/mattmacrocket/clownpeanuts](https://github.com/mattmacrocket/clownpeanuts)
 
 ## What This Repository Contains
@@ -34,7 +34,7 @@ cd secretsquirrels
 ./harness/smoke.sh
 ```
 
-The bootstrap script will clone Pingting and ClownPeanuts into sibling directories alongside SecretSquirrels (by default, under `/Users/matt/code`). The smoke test confirms that each repository was cloned successfully and contains its expected entry-point file.
+The bootstrap script will clone PingTing and ClownPeanuts into sibling directories alongside SecretSquirrels (by default, under `/Users/matt/code`). The smoke test confirms that each repository was cloned successfully and contains its expected entry-point file.
 
 For a step-by-step walkthrough of setting up the workspace on macOS, including prerequisites and authentication options, see **[docs/user-guide-macos.md](docs/user-guide-macos.md)**.
 

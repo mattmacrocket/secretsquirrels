@@ -130,11 +130,11 @@ Current behavior:
 - `ClownPeanutsAdapter`:
   - HTTP status fetch (`/status`)
   - generic HTTP proxy helper with optional bearer forwarding
-- `PingtingAdapter`:
+- `PingTingAdapter`:
   - loads `status` from file first (`data/status.json`) with staleness awareness
   - falls back to `python -m pingting status --json` when file is missing/stale/forced refresh
-  - reads recent findings directly from Pingting SQLite (`data/pingting.db`)
-  - reads recent agent runs directly from Pingting SQLite (`data/pingting.db`)
+  - reads recent findings directly from PingTing SQLite (`data/pingting.db`)
+  - reads recent agent runs directly from PingTing SQLite (`data/pingting.db`)
 
 ## 4. API auth, CORS, and websocket token handling
 
@@ -170,8 +170,8 @@ CORS behavior:
 `GET /overview/summary` currently aggregates:
 
 - ClownPeanuts runtime status (`/status`)
-- Pingting status summary (highlights + freshness)
-- Pingting recent findings subset (5 rows, not acknowledged)
+- PingTing status summary (highlights + freshness)
+- PingTing recent findings subset (5 rows, not acknowledged)
 - orchestration repo/action summary
 
 Overall health (`overall_ok`) currently evaluates:
@@ -267,7 +267,7 @@ Current default assumptions in compose:
 
 - workspace root bind mount: `/Users/matt/code`
 - ClownPeanuts upstream reachable from container via `host.docker.internal:8099`
-- Pingting repo/data mounted/read from `/Users/matt/code/pingting`
+- PingTing repo/data mounted/read from `/Users/matt/code/pingting`
 - published ports:
   - dashboard `4317`
   - API `8199`
@@ -299,7 +299,7 @@ Current migration state:
 
 These are implementation-shape constraints, not defects:
 
-- Pingting integration is read-oriented in control-plane today (status/findings/runs), not full Pingting command orchestration.
+- PingTing integration is read-oriented in control-plane today (status/findings/runs), not full PingTing command orchestration.
 - ClownPeanuts integration is adapter/proxy oriented; control-plane currently depends on ClownPeanuts API availability for Deception/Theater surfaces.
 - Action execution state is local-file based (`actions-state.json`), not distributed/shared across multiple control-plane nodes.
 
