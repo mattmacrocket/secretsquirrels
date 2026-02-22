@@ -1,0 +1,38 @@
+projects:
+  - name: pingting
+    repo: git@github.com:mattmacrocket/pingting.git
+    role: runtime
+    local_path: /Users/matt/code/pingting
+    verification_key: pingting/main.py
+    dashboard:
+      tab: sentry
+      route: /sentry
+    capabilities:
+      status: true
+      findings: true
+      reporting: true
+      alerting: true
+
+  - name: clownpeanuts
+    repo: git@github.com:mattmacrocket/clownpeanuts.git
+    role: runtime
+    local_path: /Users/matt/code/clownpeanuts
+    verification_key: clownpeanuts/cli.py
+    dashboard:
+      tab: deception
+      route: /deception
+      theater_route: /deception/theater
+    capabilities:
+      status: true
+      theater: true
+      intelligence: true
+      canaries: true
+
+orchestration:
+  name: squirrelops
+  local_path: /Users/matt/code/squirrelops
+  role: umbrella
+  controlplane:
+    dashboard_path: apps/controlplane-dashboard
+    api_path: apps/controlplane-api
+    default_route: /overview

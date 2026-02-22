@@ -1,0 +1,31 @@
+# Secrets and local env
+.env
+*.env
+
+# Python cache/build
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Runtime artifacts
+data/*.db
+data/*.sqlite
+data/*.sqlite3
+logs/*.log
+data/controlplane/*.json
+
+# Control-plane app artifacts
+apps/controlplane-dashboard/node_modules/
+apps/controlplane-dashboard/.next/
+apps/controlplane-api/.venv/
+
+# macOS
+.DS_Store
