@@ -7,6 +7,10 @@ The two runtime repositories managed by this orchestration layer are:
 - **PingTing** — [github.com/mattmacrocket/pingting](https://github.com/mattmacrocket/pingting)
 - **ClownPeanuts** — [github.com/mattmacrocket/clownpeanuts](https://github.com/mattmacrocket/clownpeanuts)
 
+## Sister Project
+
+- **SquirrelOps Home** — [github.com/mattmacrocket/squirrelops-home](https://github.com/mattmacrocket/squirrelops-home) — A native macOS application that brings zero-false-positive deception and passive network monitoring to home and small-office networks. SquirrelOps Home pairs with a lightweight sensor to auto-deploy decoy services, credential canaries, and device fingerprinting on your LAN — all completely local with no cloud dependency. It shares the PingTing and ClownPeanuts engines but packages them for personal use with a SwiftUI control plane and push-notification alerting.
+
 ## Optional Integration Boundary
 
 Optional integrations are additive and must not be required for baseline operation.
@@ -32,6 +36,18 @@ Bootstrap, update, smoke, CI, and control-plane startup are expected to work wit
 - **OpenCTI** — A threat-intelligence platform that aggregates, correlates, and visualizes indicators from multiple sources. When deployed alongside SquirrelOps, OpenCTI ingests ClownPeanuts deception data through its TAXII connector, allowing analysts to explore relationships between deception events and broader threat activity.
 
 - **MITRE ATT&CK** — An industry-standard framework of adversary tactics and techniques maintained by MITRE. When enabled within OpenCTI, the ATT&CK connector imports the full technique catalog so that deception findings and intelligence from ClownPeanuts can be mapped to recognized adversary behaviors.
+
+- **FunHouseForge** — [github.com/mattmacrocket/funhouseforge](https://github.com/mattmacrocket/funhouseforge) — The deployment orchestrator for decoy lifecycle management. FunHouseForge handles standing up, activating, and tearing down decoy environments, and coordinates the other optional modules during post-deploy priming so operators can go from a bare deployment to a fully furnished deception environment in a single workflow.
+
+- **GhostCrew** — [github.com/mattmacrocket/ghostcrew](https://github.com/mattmacrocket/ghostcrew) — Generates realistic synthetic activity inside decoy deployments so they look and feel like live production services. GhostCrew supports scripted scenes such as reconnaissance and lateral movement, making it harder for adversaries to distinguish decoys from real infrastructure.
+
+- **WitchBait** — [github.com/mattmacrocket/witchbait](https://github.com/mattmacrocket/witchbait) — Plants credential canaries across environments and tracks when anyone attempts to use them. WitchBait can generate deterministic credential plans from a deployment's service inventory and provides trip telemetry whenever a planted credential is exercised.
+
+- **ADLibs** — [github.com/mattmacrocket/adlibs](https://github.com/mattmacrocket/adlibs) — Seeds deceptive users, service accounts, and groups into Active Directory and detects when an adversary interacts with them. ADLibs correlates directory event logs against its seeded-object inventory, turning routine AD telemetry into high-confidence trip alerts.
+
+- **PripyatSprings** — [github.com/mattmacrocket/pripyatsprings](https://github.com/mattmacrocket/pripyatsprings) — Fingerprints exported data artifacts and tracks callback hits when stolen files are opened or accessed outside the environment. PripyatSprings applies configurable toxicity levels that range from silent tracking to active data corruption, giving operators a dial between passive attribution and adversary disruption.
+
+- **DirtyLaundry** — [github.com/mattmacrocket/dirtylaundry](https://github.com/mattmacrocket/dirtylaundry) — Profiles adversaries across sessions by analyzing behavioral patterns such as timing, tool usage, and credential habits. DirtyLaundry classifies intruder skill level and produces adaptive policy recommendations so the deception environment can automatically adjust its complexity to match the threat.
 
 ## What This Repository Contains
 
