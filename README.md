@@ -19,6 +19,20 @@ Baseline required set remains:
 
 Bootstrap, update, smoke, CI, and control-plane startup are expected to work with only the baseline set above.
 
+### Required Integrations
+
+- **SquirrelOps** — The central orchestration and control-plane layer. SquirrelOps manages the lifecycle of the runtime repositories, runs health checks, and hosts the operator dashboard and aggregation API that bring everything together in one interface.
+
+- **ClownPeanuts** — The deception runtime responsible for deploying and managing decoy assets, canary tokens, and threat-intelligence feeds. ClownPeanuts publishes real-time events and theater visualizations that the control-plane relays to operators through the dashboard. It also exposes a TAXII 2 endpoint for sharing structured threat data with external platforms.
+
+- **PingTing** — The sentry runtime that continuously monitors the environment for security-relevant findings and anomalies. PingTing produces structured alerts and run reports that the control-plane surfaces in the Sentry tab, giving operators a single view of detection activity across the workspace.
+
+### Optional Integrations
+
+- **OpenCTI** — A threat-intelligence platform that aggregates, correlates, and visualizes indicators from multiple sources. When deployed alongside SquirrelOps, OpenCTI ingests ClownPeanuts deception data through its TAXII connector, allowing analysts to explore relationships between deception events and broader threat activity.
+
+- **MITRE ATT&CK** — An industry-standard framework of adversary tactics and techniques maintained by MITRE. When enabled within OpenCTI, the ATT&CK connector imports the full technique catalog so that deception findings and intelligence from ClownPeanuts can be mapped to recognized adversary behaviors.
+
 ## What This Repository Contains
 
 - **`config/projects.yaml`** — The single source of truth for which repositories are managed, their Git URLs, their roles, and the file paths used to verify a successful checkout (called "verification keys").
