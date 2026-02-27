@@ -4,12 +4,12 @@ SquirrelOps is the orchestration layer for a multi-repository agent workspace. I
 
 The two runtime repositories managed by this orchestration layer are:
 
-- **PingTing** — [github.com/mattmacrocket/pingting](https://github.com/mattmacrocket/pingting)
-- **ClownPeanuts** — [github.com/mattmacrocket/clownpeanuts](https://github.com/mattmacrocket/clownpeanuts)
+- **PingTing** — [github.com/rocketweb/pingting](https://github.com/rocketweb/pingting)
+- **ClownPeanuts** — [github.com/rocketweb/clownpeanuts](https://github.com/rocketweb/clownpeanuts)
 
 ## Sister Project
 
-- **SquirrelOps Home** — [github.com/mattmacrocket/squirrelops-home](https://github.com/mattmacrocket/squirrelops-home) — A native macOS application that brings zero-false-positive deception and passive network monitoring to home and small-office networks. SquirrelOps Home pairs with a lightweight sensor to auto-deploy decoy services, credential canaries, and device fingerprinting on your LAN — all completely local with no cloud dependency. It shares the PingTing and ClownPeanuts engines but packages them for personal use with a SwiftUI control plane and push-notification alerting.
+- **SquirrelOps Home** — [github.com/rocketweb/squirrelops-home](https://github.com/rocketweb/squirrelops-home) — A native macOS application that brings zero-false-positive deception and passive network monitoring to home and small-office networks. SquirrelOps Home pairs with a lightweight sensor to auto-deploy decoy services, credential canaries, and device fingerprinting on your LAN — all completely local with no cloud dependency. It shares the PingTing and ClownPeanuts engines but packages them for personal use with a SwiftUI control plane and push-notification alerting.
 
 ## Optional Integration Boundary
 
@@ -37,17 +37,17 @@ Bootstrap, update, smoke, CI, and control-plane startup are expected to work wit
 
 - **MITRE ATT&CK** — An industry-standard framework of adversary tactics and techniques maintained by MITRE. When enabled within OpenCTI, the ATT&CK connector imports the full technique catalog so that deception findings and intelligence from ClownPeanuts can be mapped to recognized adversary behaviors.
 
-- **FunHouseForge** — [github.com/mattmacrocket/funhouseforge](https://github.com/mattmacrocket/funhouseforge) — The deployment orchestrator for decoy lifecycle management. FunHouseForge handles standing up, activating, and tearing down decoy environments, and coordinates the other optional modules during post-deploy priming so operators can go from a bare deployment to a fully furnished deception environment in a single workflow.
+- **FunHouseForge** — [github.com/rocketweb/funhouseforge](https://github.com/rocketweb/funhouseforge) — The deployment orchestrator for decoy lifecycle management. FunHouseForge handles standing up, activating, and tearing down decoy environments, and coordinates the other optional modules during post-deploy priming so operators can go from a bare deployment to a fully furnished deception environment in a single workflow.
 
-- **GhostCrew** — [github.com/mattmacrocket/ghostcrew](https://github.com/mattmacrocket/ghostcrew) — Generates realistic synthetic activity inside decoy deployments so they look and feel like live production services. GhostCrew supports scripted scenes such as reconnaissance and lateral movement, making it harder for adversaries to distinguish decoys from real infrastructure.
+- **GhostCrew** — [github.com/rocketweb/ghostcrew](https://github.com/rocketweb/ghostcrew) — Generates realistic synthetic activity inside decoy deployments so they look and feel like live production services. GhostCrew supports scripted scenes such as reconnaissance and lateral movement, making it harder for adversaries to distinguish decoys from real infrastructure.
 
-- **WitchBait** — [github.com/mattmacrocket/witchbait](https://github.com/mattmacrocket/witchbait) — Plants credential canaries across environments and tracks when anyone attempts to use them. WitchBait can generate deterministic credential plans from a deployment's service inventory and provides trip telemetry whenever a planted credential is exercised.
+- **WitchBait** — [github.com/rocketweb/witchbait](https://github.com/rocketweb/witchbait) — Plants credential canaries across environments and tracks when anyone attempts to use them. WitchBait can generate deterministic credential plans from a deployment's service inventory and provides trip telemetry whenever a planted credential is exercised.
 
-- **ADLibs** — [github.com/mattmacrocket/adlibs](https://github.com/mattmacrocket/adlibs) — Seeds deceptive users, service accounts, and groups into Active Directory and detects when an adversary interacts with them. ADLibs correlates directory event logs against its seeded-object inventory, turning routine AD telemetry into high-confidence trip alerts.
+- **ADLibs** — [github.com/rocketweb/adlibs](https://github.com/rocketweb/adlibs) — Seeds deceptive users, service accounts, and groups into Active Directory and detects when an adversary interacts with them. ADLibs correlates directory event logs against its seeded-object inventory, turning routine AD telemetry into high-confidence trip alerts.
 
-- **PripyatSprings** — [github.com/mattmacrocket/pripyatsprings](https://github.com/mattmacrocket/pripyatsprings) — Fingerprints exported data artifacts and tracks callback hits when stolen files are opened or accessed outside the environment. PripyatSprings applies configurable toxicity levels that range from silent tracking to active data corruption, giving operators a dial between passive attribution and adversary disruption.
+- **PripyatSprings** — [github.com/rocketweb/pripyatsprings](https://github.com/rocketweb/pripyatsprings) — Fingerprints exported data artifacts and tracks callback hits when stolen files are opened or accessed outside the environment. PripyatSprings applies configurable toxicity levels that range from silent tracking to active data corruption, giving operators a dial between passive attribution and adversary disruption.
 
-- **DirtyLaundry** — [github.com/mattmacrocket/dirtylaundry](https://github.com/mattmacrocket/dirtylaundry) — Profiles adversaries across sessions by analyzing behavioral patterns such as timing, tool usage, and credential habits. DirtyLaundry classifies intruder skill level and produces adaptive policy recommendations so the deception environment can automatically adjust its complexity to match the threat.
+- **DirtyLaundry** — [github.com/rocketweb/dirtylaundry](https://github.com/rocketweb/dirtylaundry) — Profiles adversaries across sessions by analyzing behavioral patterns such as timing, tool usage, and credential habits. DirtyLaundry classifies intruder skill level and produces adaptive policy recommendations so the deception environment can automatically adjust its complexity to match the threat.
 
 ## What This Repository Contains
 
@@ -70,7 +70,7 @@ Bootstrap, update, smoke, CI, and control-plane startup are expected to work wit
 Clone this repository, bootstrap the runtime repos, and run the smoke test:
 
 ```bash
-git clone git@github.com:mattmacrocket/squirrelops.git
+git clone git@github.com:rocketweb/squirrelops.git
 cd squirrelops
 ./scripts/bootstrap_repos.sh
 ./harness/smoke.sh
@@ -175,7 +175,7 @@ Several guardrails are built into the scripts to prevent accidental operations o
 
 - **Directory validation** — Every script validates that the requested base directory falls within `ALLOWED_BASE_ROOTS` before doing anything. This prevents the scripts from being tricked into cloning into or modifying files in arbitrary locations. The default allowed root is `/Users/matt/code`; in CI, `$RUNNER_TEMP` is also allowed.
 
-- **Owner validation** — When constructing or verifying a Git remote URL, the scripts check that the GitHub owner (organization or user) is in the `ALLOWED_GITHUB_ORGS` list. The default is `mattmacrocket`. This prevents the scripts from operating on repositories owned by unexpected parties.
+- **Owner validation** — When constructing or verifying a Git remote URL, the scripts check that the GitHub owner (organization or user) is in the `ALLOWED_GITHUB_ORGS` list. The default is `rocketweb`. This prevents the scripts from operating on repositories owned by unexpected parties.
 
 - **Remote verification** — Before updating an existing checkout, the scripts parse the current Git remote URL and compare the owner/repo slug against what `config/projects.yaml` declares. If they do not match, the operation is aborted. This catches situations where a directory exists at the expected path but points to a different repository.
 
@@ -195,7 +195,7 @@ The bootstrap and update scripts are configured through environment variables. N
 | `CLONE_PROTOCOL` | Auto-detected: `https` in CI, `ssh` locally | Whether to clone via SSH (`git@github.com:...`) or HTTPS (`https://github.com/...`). Only `ssh` and `https` are accepted. |
 | `GH_ACCESS_TOKEN` | *(none)* | GitHub personal access token for authenticated HTTPS operations. `GITHUB_TOKEN` is also accepted. Only relevant when `CLONE_PROTOCOL=https`. |
 | `ALLOWED_BASE_ROOTS` | `/Users/matt/code` (plus `$RUNNER_TEMP` in CI) | Comma-separated list of directory prefixes that the scripts are allowed to operate in. |
-| `ALLOWED_GITHUB_ORGS` | `mattmacrocket` | Comma-separated list of GitHub owners/organizations that managed repositories are allowed to belong to. |
+| `ALLOWED_GITHUB_ORGS` | `rocketweb` | Comma-separated list of GitHub owners/organizations that managed repositories are allowed to belong to. |
 | `GIT_CLONE_TIMEOUT_SEC` | `300` | Hard timeout in seconds for `git clone` operations. |
 | `GIT_FETCH_TIMEOUT_SEC` | `120` | Hard timeout in seconds for `git fetch` operations. |
 | `GIT_PULL_TIMEOUT_SEC` | `120` | Hard timeout in seconds for `git pull` operations. |
@@ -216,8 +216,8 @@ The job has a 10-minute timeout and requests only `contents: read` permissions.
 
 To enable CI for private runtime repositories, create a repository secret named `CROSS_REPO_PAT` containing a GitHub personal access token with read access to:
 
-- `mattmacrocket/pingting`
-- `mattmacrocket/clownpeanuts`
+- `rocketweb/pingting`
+- `rocketweb/clownpeanuts`
 
 ## Repository Layout
 

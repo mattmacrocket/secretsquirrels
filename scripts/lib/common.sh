@@ -90,7 +90,7 @@ validate_base_dir() {
 
 owner_allowed() {
   local owner="$1"
-  local allowed_orgs="${ALLOWED_GITHUB_ORGS:-mattmacrocket}"
+  local allowed_orgs="${ALLOWED_GITHUB_ORGS:-rocketweb}"
   local org=""
 
   IFS=',' read -r -a org_list <<< "${allowed_orgs}"
@@ -142,7 +142,7 @@ repo_url_for_protocol() {
   repo_name="${parsed##*|}"
 
   if ! owner_allowed "${owner}"; then
-    die "Repository owner '${owner}' is not in ALLOWED_GITHUB_ORGS='${ALLOWED_GITHUB_ORGS:-mattmacrocket}'"
+    die "Repository owner '${owner}' is not in ALLOWED_GITHUB_ORGS='${ALLOWED_GITHUB_ORGS:-rocketweb}'"
   fi
 
   if [[ "${clone_protocol}" == "https" ]]; then

@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="cp-content">{children}</div>
             <footer className="cp-footer">
               <a
-                href="https://github.com/mattmacrocket/squirrelops"
+                href="https://github.com/rocketweb/squirrelops"
                 target="_blank"
                 rel="noreferrer"
                 className="cp-footer-link"

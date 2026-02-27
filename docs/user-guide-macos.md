@@ -40,7 +40,7 @@ If you skip this step, the scripts will still work — they will simply run Git 
 
 ### GitHub Access
 
-The managed runtime repositories (`mattmacrocket/pingting` and `mattmacrocket/clownpeanuts`) may be private. You need Git-level read access to both of them. There are two ways to authenticate (you will choose one in Step 3 below):
+The managed runtime repositories (`rocketweb/pingting` and `rocketweb/clownpeanuts`) may be private. You need Git-level read access to both of them. There are two ways to authenticate (you will choose one in Step 3 below):
 
 - **SSH key** — Your SSH key must be added to your GitHub account and loaded into your SSH agent.
 - **Personal access token** — A GitHub token with `repo` read access, used with HTTPS cloning.
@@ -54,7 +54,7 @@ Create the base directory (if it does not already exist) and clone this orchestr
 ```bash
 mkdir -p /Users/matt/code
 cd /Users/matt/code
-git clone git@github.com:mattmacrocket/squirrelops.git
+git clone git@github.com:rocketweb/squirrelops.git
 cd squirrelops
 ```
 
@@ -88,8 +88,8 @@ The script will clone PingTing and ClownPeanuts in parallel into sibling directo
 
 If you prefer HTTPS or cannot use SSH, you can authenticate with a GitHub personal access token. Create a token at [github.com/settings/tokens](https://github.com/settings/tokens) with read access to:
 
-- `mattmacrocket/pingting`
-- `mattmacrocket/clownpeanuts`
+- `rocketweb/pingting`
+- `rocketweb/clownpeanuts`
 
 Then export the token and protocol before running the bootstrap:
 
@@ -176,7 +176,7 @@ The repository definitions live in `config/projects.yaml`. This file is the sing
 ```yaml
 projects:
   - name: pingting
-    repo: git@github.com:mattmacrocket/pingting.git
+    repo: git@github.com:rocketweb/pingting.git
     role: runtime
     verification_key: pingting/main.py
 ```

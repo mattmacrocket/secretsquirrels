@@ -1,6 +1,6 @@
 projects:
   - name: pingting
-    repo: git@github.com:mattmacrocket/pingting.git
+    repo: git@github.com:rocketweb/pingting.git
     role: runtime
     local_path: /Users/matt/code/pingting
     verification_key: pingting/main.py
@@ -14,7 +14,7 @@ projects:
       alerting: true
 
   - name: clownpeanuts
-    repo: git@github.com:mattmacrocket/clownpeanuts.git
+    repo: git@github.com:rocketweb/clownpeanuts.git
     role: runtime
     local_path: /Users/matt/code/clownpeanuts
     verification_key: clownpeanuts/cli.py
